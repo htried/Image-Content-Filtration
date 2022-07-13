@@ -1,6 +1,4 @@
-file1 = open(
-    r'path\to\txt\containing\all\urls',
-    'r')
+file1 = open('/home/htriedman/nsfw_data_source_urls/all.txt','r')
 
 # Removing duplicate images
-filepath = r'path\to\unsafe\images'
+filepath = '/home/htriedman/Image-Content-Filtration/datasets/nsfw'
