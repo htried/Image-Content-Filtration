@@ -68,11 +68,21 @@ model.compile(optimizer=Adam(lr=learning_rate),
 
 # Setting train and validation data generators for training and validation
 train_datagen = ImageDataGenerator(
-    preprocessing_function=preprocess_input)
+    rotation_range=30,
+    width_shift_range=0.3,
+    height_shift_range=0.3,
+    zoom_range=0.1,
+    horizontal_flip=True,
+    preprocessing_function=preprocess_input
+)
 
 train_generator = train_datagen.flow_from_directory(
-    train_dir, target_size=(dimension1, dimension2), color_mode='rgb',
-    batch_size=batch_size, class_mode='categorical', shuffle=True)
+    train_dir,
+    target_size=(dimension1, dimension2),
+    color_mode='rgb',
+    batch_size=batch_size,
+    class_mode='categorical',
+    shuffle=True)
 
 validation_datagen = ImageDataGenerator(rescale=1.0/255.)
 
@@ -89,4 +99,4 @@ history = model.fit(
     validation_steps=int(num_validation_images/batch_size),
     epochs=epochs, callbacks=[callback_reduce_lr, callback_stop_training])
 
-model.save('name_of_model.h5')
+model.save('/home/htriedman/Image-Content-Filtration/trained/hal-retraining_run_3.h5')
